@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: users-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: users
+  template:
+    metadata:
+      labels:
+        app: users
+    spec:
+      containers:
+      - name: users
+        image: lukakap/kub-networking-app-users:latest
+        env:
+          - name: AUTH_APP
+            value: "auth-service.default"
+            # value: "10.102.174.27"
+            # value: localhost
+      # in this case we want too create two containers inside one pod
+      # - name: auth
+      #   image: lukakap/kub-networking-app-auth:latest

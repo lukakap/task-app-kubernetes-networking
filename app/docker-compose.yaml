@@ -1,0 +1,17 @@
+version: "3"
+services:
+  auth:
+    build: ./auth_api
+  users:
+    build: ./users_api
+    ports: 
+      - "8002:8002"
+    environment:
+      AUTH_APP: auth
+  tasks:
+    build: ./tasks_api
+    ports: 
+      - "8001:8001"
+    environment:
+      TASKS_FOLDER: tasks
+      AUTH_APP: auth

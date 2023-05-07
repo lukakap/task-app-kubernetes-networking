@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-service
+spec:
+  selector:
+    app: auth
+  ports:
+    - protocol: 'TCP'
+      port: 8003
+      targetPort: 8003
+  # We dont need LoadBalancer, because we don't want to be recheable from outside of cluster
+  # ClusterIP - this service will be reached from inside of cluster
+  type: ClusterIP
